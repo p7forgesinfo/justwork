@@ -16,7 +16,7 @@ defineProps({
     <v-card-item>
       <v-img src="https://cdn.vuetifyjs.com/images/parallax/material.jpg" aspect-ratio="16/9" cover/>
     </v-card-item>
-    <v-card-item class="movie-slide__genres">
+    <v-card-item>
       <v-chip-group>
         <v-chip v-for="genre in slide.title.genres" :key="(genre as MetaItem).oid">
           {{ (genre as MetaItem).name }}
@@ -28,7 +28,6 @@ defineProps({
         #{{ (label as MetaItem).name }}
       </span>
     </v-card-item>
-
   </v-card>
 </template>
 

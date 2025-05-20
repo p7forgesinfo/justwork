@@ -9,7 +9,7 @@ export type MovieTitle = {
   synopsis: string,
   age: number,
   genres: string[] | MetaItem[],
-  labels: [],
+  labels: string[] | MetaItem[],
   assets: SlideAsset[],
   url: string,
   air_date: string,
