@@ -1,4 +1,4 @@
-const showcaseURL = import.meta.env.VITE_API_BASE_URL;
+const showcaseURL = import.meta.env.VITE_API_SHOWCASE_URL;
 
 export const useShowcaseApi = (endpoint: string, meta: Map<string, MetaItem>) => {
 
