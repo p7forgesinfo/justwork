@@ -9,15 +9,21 @@ export const useMetadataStore = defineStore("metadata", () => {
   const { data: rewards, status: rewardsStatus } = useBaseApi<MetaItem[]>('/v1/metadata/rewards/');
   const { data: studios, status: studiosStatus } = useBaseApi<MetaItem[]>('/v1/metadata/rewards/');
 
-  const isReady = computed(() =>
-    countriesStatus.value === 'success' &&
-    genresStatus.value === 'success' &&
-    jobsStatus.value === 'success' &&
-    kindStatus.value === 'success' &&
-    labelsStatus.value === 'success' &&
-    rewardsStatus.value === 'success' &&
-    studiosStatus.value === 'success'
-  )
+  const status = computed(() => {
+    const statuses: string[] = [
+      countriesStatus.value,
+      genresStatus.value,
+      jobsStatus.value,
+      kindStatus.value,
+      labelsStatus.value,
+      rewardsStatus.value,
+      studiosStatus.value,
+    ];
+
+    return statuses.includes('pending')
+      ? 'pending'
+      : 'success';
+  });
 
   const allMetas = computed(() => {
     const all = [
@@ -50,6 +56,6 @@ export const useMetadataStore = defineStore("metadata", () => {
     rewards,
     studios,
     allMetas,
-    isReady,
+    status,
   };
 });
