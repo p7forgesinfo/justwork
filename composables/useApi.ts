@@ -1,11 +1,12 @@
 import type { UseFetchOptions } from 'nuxt/app'
 
 
-const apiBaseUrl = 'https://cms.test.ksfr.tech/api'
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 export const useApi = <T>(endpoint: string, options?: UseFetchOptions<T>,) => {
 
-  return useFetch(`${apiBaseUrl}${endpoint}`, {
-    ...options
+  return useFetch(endpoint, {
+    baseURL,
+    ...options,
   });
 }

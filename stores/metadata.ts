@@ -20,15 +20,15 @@ export const useMetadataStore = defineStore("metadata", () => {
       studios.value,
     ];
 
-    const metaMap = new Map<string, MetaItem>();
+    const metasMap = new Map<string, MetaItem>();
 
     all.flat().forEach((item) => {
       if (item) {
-        metaMap.set(item.oid, item)
+        metasMap.set(item.oid, item)
       }
     });
 
-    return metaMap;
+    return metasMap;
   });
 
   return {
