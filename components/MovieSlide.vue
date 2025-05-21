@@ -1,10 +1,16 @@
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
   slide: {
     type: Object as PropType<Slide>,
     required: true
   }
 });
+
+const posterUrl = computed(() => {
+  const poster = props.slide.title.assets.find((asset) => asset.asset_type === 'Banner')
+
+  return poster?.resize_url.replace('{w}x{h}', '600x340');
+})
 </script>
 
 <template>
@@ -14,7 +20,7 @@ defineProps({
     :text="slide.title.synopsis"
   >
     <v-card-item>
-      <v-img src="https://cdn.vuetifyjs.com/images/parallax/material.jpg" aspect-ratio="16/9" cover/>
+      <v-img :src="posterUrl" aspect-ratio="16/9" cover height="340"/>
     </v-card-item>
     <v-card-item>
       <v-chip-group>
