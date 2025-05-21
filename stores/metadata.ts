@@ -1,13 +1,13 @@
 import { defineStore } from "pinia";
 
 export const useMetadataStore = defineStore("metadata", () => {
-  const { data: countries } = useApi<MetaItem[]>('/v1/metadata/countries/');
-  const { data: genres } = useApi<MetaItem[]>('/v1/metadata/genres/');
-  const { data: jobs } = useApi<MetaItem[]>('/v1/metadata/jobs/');
-  const { data: kind } = useApi<MetaItem[]>('/v1/metadata/kind/');
-  const { data: labels } = useApi<MetaItem[]>('/v1/metadata/labels/');
-  const { data: rewards } = useApi<MetaItem[]>('/v1/metadata/rewards/');
-  const { data: studios } = useApi<MetaItem[]>('/v1/metadata/rewards/');
+  const { data: countries } = useBaseApi<MetaItem[]>('/v1/metadata/countries/');
+  const { data: genres } = useBaseApi<MetaItem[]>('/v1/metadata/genres/');
+  const { data: jobs } = useBaseApi<MetaItem[]>('/v1/metadata/jobs/');
+  const { data: kind } = useBaseApi<MetaItem[]>('/v1/metadata/kind/');
+  const { data: labels } = useBaseApi<MetaItem[]>('/v1/metadata/labels/');
+  const { data: rewards } = useBaseApi<MetaItem[]>('/v1/metadata/rewards/');
+  const { data: studios } = useBaseApi<MetaItem[]>('/v1/metadata/rewards/');
 
   const allMetas = computed(() => {
     const all = [
