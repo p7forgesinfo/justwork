@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-prototype-builtins */
 const deepFindAndChange = <T>(obj: T, callback: (value: any) => any): T => {
   if (typeof obj !== 'object' || obj === null) {
