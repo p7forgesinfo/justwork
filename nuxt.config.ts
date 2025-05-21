@@ -38,5 +38,12 @@ export default defineNuxtConfig({
         transformAssetUrls,
       },
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "@/assets/css/media.scss" as *;`
+        }
+      }
+    },
   },
 })

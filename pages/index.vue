@@ -29,19 +29,41 @@ const page = useMainPageStore();
 .main-page {
   padding: 20px;
   
-  @media screen and (max-width: 425px) {
-    padding: 4px;
-  }
+    @include device(sm) {
+      padding: 10px;
+    }
+
+    @include device(xs) {
+      padding: 4px;
+    }
 
   &__message {
     margin-bottom: 40px;
   }
   &__slides {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 
-    @media screen and (max-width: 425px) {
+    @include device(xl) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include device(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include device(md) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    @include device(sm) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    @include device(xs) {
       grid-template-columns: repeat(1, 1fr);
       gap: 10px;
     }
