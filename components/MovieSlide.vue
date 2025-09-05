@@ -1,10 +1,7 @@
 <script setup lang="ts">
-const props = defineProps({
-  slide: {
-    type: Object as PropType<Slide>,
-    required: true
-  }
-});
+const props = defineProps<{
+  slide: Slide;
+}>();
 
 const posterUrl = computed(() => {
   const poster = props.slide.title.assets.find((asset) => asset.asset_type === 'Banner')
@@ -20,18 +17,29 @@ const posterUrl = computed(() => {
     :text="slide.title.synopsis"
   >
     <v-card-item>
-      <v-img :src="posterUrl" aspect-ratio="16/9" cover height="340"/>
+      <v-img
+        :src="posterUrl"
+        aspect-ratio="16/9"
+        cover
+        height="340"
+      />
     </v-card-item>
     <v-card-item>
       <v-chip-group>
-        <v-chip v-for="genre in slide.title.genres" :key="(genre as MetaItem).oid">
-          {{ (genre as MetaItem).name }}
+        <v-chip
+          v-for="genre in slide.title.genres"
+          :key="genre.oid"
+        >
+          {{ genre.name }}
         </v-chip>
       </v-chip-group>
     </v-card-item>
     <v-card-item class="movie-slide__labels">
-      <span v-for="label in slide.title.labels" :key="(label as MetaItem).oid">
-        #{{ (label as MetaItem).name }}
+      <span
+        v-for="label in slide.title.labels"
+        :key="label.oid"
+      >
+        #{{ label.name }}
       </span>
     </v-card-item>
   </v-card>

@@ -5,15 +5,19 @@ const page = useMainPageStore();
 
 <template>
   <div class="main-page">
-    <v-card class="main-page__message"  variant="outlined">
+    <v-card
+      class="main-page__message"
+      variant="outlined"
+    >
       <v-card-text>
         Понятно, что нужно бы проработать крайние случаи в выборке данных, но не в тестовом же ;)<br>
-        <br>
-        P.S.: Жанры можно таскать влево/вправо
       </v-card-text>
     </v-card>
     <div class="main-page__slides">
-      <v-progress-circular v-if="page.status === 'pending'" indeterminate />
+      <v-progress-circular
+        v-if="page.status === 'pending'"
+        indeterminate
+      />
       <movie-slide
         v-for="slide in page.slides"
         :key="slide.oid"
@@ -27,17 +31,18 @@ const page = useMainPageStore();
 .main-page {
   padding: 20px;
   
-    @include device(sm) {
-      padding: 10px;
-    }
+  @include device(sm) {
+    padding: 10px;
+  }
 
-    @include device(xs) {
-      padding: 4px;
-    }
+  @include device(xs) {
+    padding: 4px;
+  }
 
   &__message {
     margin-bottom: 40px;
   }
+
   &__slides {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
