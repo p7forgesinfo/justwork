@@ -3,6 +3,8 @@ const props = defineProps<{
   slide: Slide;
 }>();
 
+const page = useMainPageStore();
+
 const posterUrl = computed(() => {
   const poster = props.slide.title.assets.find((asset) => asset.asset_type === 'Banner')
 
@@ -29,6 +31,7 @@ const posterUrl = computed(() => {
         <v-chip
           v-for="genre in slide.title.genres"
           :key="genre.oid"
+          @click="page.toggleTag(genre.name)"
         >
           {{ genre.name }}
         </v-chip>
@@ -38,6 +41,7 @@ const posterUrl = computed(() => {
       <span
         v-for="label in slide.title.labels"
         :key="label.oid"
+        @click="page.toggleTag(label.name)"
       >
         #{{ label.name }}
       </span>

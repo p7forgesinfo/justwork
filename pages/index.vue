@@ -13,13 +13,14 @@ const page = useMainPageStore();
         Понятно, что нужно бы проработать крайние случаи в выборке данных, но не в тестовом же ;)<br>
       </v-card-text>
     </v-card>
+    <SelectedTags class="main-page__selected-tags" />
     <div class="main-page__slides">
       <v-progress-circular
         v-if="page.status === 'pending'"
         indeterminate
       />
       <movie-slide
-        v-for="slide in page.slides"
+        v-for="slide in page.filteredSlides"
         :key="slide.oid"
         :slide="slide"
       />
@@ -40,6 +41,10 @@ const page = useMainPageStore();
   }
 
   &__message {
+    margin-bottom: 40px;
+  }
+
+  &__selected-tags {
     margin-bottom: 40px;
   }
 
