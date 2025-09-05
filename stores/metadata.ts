@@ -7,10 +7,10 @@ export const useMetadataStore = defineStore("metadata", () => {
   const { data: kind, status: kindStatus } = useBaseApi<MetaItem[]>('/v1/metadata/kind/');
   const { data: labels, status: labelsStatus } = useBaseApi<MetaItem[]>('/v1/metadata/labels/');
   const { data: rewards, status: rewardsStatus } = useBaseApi<MetaItem[]>('/v1/metadata/rewards/');
-  const { data: studios, status: studiosStatus } = useBaseApi<MetaItem[]>('/v1/metadata/rewards/');
+  const { data: studios, status: studiosStatus } = useBaseApi<MetaItem[]>('/v1/metadata/studios/');
 
   const status = computed(() => {
-    const statuses: string[] = [
+    const statuses: FetchStatus[] = [
       countriesStatus.value,
       genresStatus.value,
       jobsStatus.value,
@@ -38,7 +38,7 @@ export const useMetadataStore = defineStore("metadata", () => {
 
     const metasMap = new Map<string, MetaItem>();
 
-    all.flat().forEach((item) => {
+    all.flat().filter(Boolean).forEach((item) => {
       if (item) {
         metasMap.set(item.oid, item)
       }

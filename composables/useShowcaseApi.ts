@@ -1,13 +1,14 @@
 const showcaseURL = import.meta.env.VITE_API_SHOWCASE_URL;
 
-export const useShowcaseApi = (endpoint: string) => {
+export const useShowcaseApi = <T>(endpoint: string) => {
   const { allMetas } = storeToRefs(useMetadataStore());
 
-  const getValuesFromMeta = (value: string) => allMetas.value.has(value)
-    ? allMetas.value.get(value)
-    : value;
+  const getValuesFromMeta = <U>(value: U): U =>
+    (typeof value === 'string' && allMetas.value.has(value))
+      ? allMetas.value.get(value) as U
+      : value;
 
-  return useBaseApi(`${showcaseURL}${endpoint}`, {
-    transform: (source: Showcase): Showcase => deepChangeValues(source, getValuesFromMeta),
+  return useBaseApi<T>(`${showcaseURL}${endpoint}`, {
+    transform: (source: T): T => deepChangeValues(source, getValuesFromMeta),
   });
 }

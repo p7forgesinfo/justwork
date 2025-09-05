@@ -3,17 +3,32 @@ export type MetaItem = {
   name: string,
 }
 
-export type MovieTitle = {
+export type AssetType = 'Banner' | 'Poster' | 'Background' | 'Thumbnail';
+
+export type FetchStatus = 'idle' | 'pending' | 'success' | 'error';
+
+export type SlideAsset = {
+  oid: string,
+  asset_type: AssetType,
+  resize_url: string,
+};
+
+export type MovieTitleRaw = {
   oid: string,
   title: string,
   synopsis: string,
   age: number,
-  genres: string[] | MetaItem[],
-  labels: string[] | MetaItem[],
+  genres: string[],
+  labels: string[],
   assets: SlideAsset[],
   url: string,
   air_date: string,
   end_date: string | null,
+}
+
+export type MovieTitle = Omit<MovieTitleRaw, 'genres' | 'labels'> & {
+  genres: MetaItem[],
+  labels: MetaItem[],
 }
 
 export type MovieVersion = {
@@ -33,7 +48,6 @@ export type MoviePreview = {
   oid: string,
   versions: MovieVersion[],
   url: string,
-
 }
 
 export type MovieLiveBanner = {
@@ -42,18 +56,16 @@ export type MovieLiveBanner = {
   url: string,
 }
 
-export type SlideAsset = {
+export type SlideRaw = {
   oid: string,
-  asset_type: string,
-  resize_url: string,
-};
-
-export type Slide = {
-  oid: string,
-  title: MovieTitle,
+  title: MovieTitleRaw,
   trailer: MovieTrailer,
   preview: MoviePreview,
   live_banner: MovieLiveBanner,
+}
+
+export type Slide = Omit<SlideRaw, 'title'> & {
+  title: MovieTitle
 }
 
 export type Showcase = {
